@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>PDF viewer Adv.</title>
+    
+    <!-- Link to the external CSS file -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- PDF.js library from Mozilla CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+</head>
+<body>
+
+    <!-- Main view with the title and action buttons -->
+    <div id="main-view">
+        <h1>PDF viewer Adv.</h1>
+        <div id="last-opened-container">
+            <h3>Recent Files</h3>
+            <div id="last-opened-list">
+                <!-- Links to last 3 opened PDFs will be dynamically inserted here -->
+            </div>
+        </div>
+        
+        <!-- This button will trigger the hidden file input -->
+        <button id="open-btn" class="action-button">Open PDF</button>
+        <input type="file" id="file-input" accept=".pdf" />
+    </div>
+
+    <!-- The full-screen container for displaying the PDF -->
+    <div id="pdf-viewer">
+        <!-- The canvas where the PDF page will be rendered -->
+        <canvas id="pdf-canvas"></canvas>
+        
+        <!-- The close button visible in full-screen mode -->
+        <div id="close-btn" title="Close Viewer">❌</div>
+        
+        <!-- Page number indicator (e.g., "2 / 15") -->
+        <div id="page-num-indicator"></div>
+    </div>
+    
+    <!-- The persistent tooltip at the bottom -->
+    <div class="tooltip">made by DecodingM</div>
+
+    <!-- Link to the external JavaScript file, deferred to load after the HTML -->
+    <script defer src="script.js"></script>
+</body>
+</html>
