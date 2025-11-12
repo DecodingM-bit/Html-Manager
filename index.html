@@ -1,49 +1,363 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>PDF viewer Adv.</title>
-    
-    <!-- Link to the external CSS file -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- PDF.js library from Mozilla CDN -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.11.338/pdf.min.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Pages required?</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+
+<style>
+body {
+background-color: lightyellow;
+font-family: sans-serif;
+}
+    .container {
+        max-width: 800px;
+        margin: 2rem auto;
+        padding: 2rem;
+        background-color: white;
+        border-radius: 8px;
+               margin-top: 40px;
+        padding: 8px 40px;
+    }
+
+        .page-border {
+            background-color: #BFECFF; /* New Page Container Color */
+            padding: 10px 15px;
+            border-radius: 15px;
+border: 4px solid skyBlue;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+            width: 90%;
+            max-width: 900px;
+         
+        }
+
+ .comment {
+   font-size: 10px;
+padding: 1px;
+height: 5px;
+}
+  
+.heading {
+  font-family: "Nabla", system-ui;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+font-size: 23px;
+  font-variation-settings:
+    "EDPT" 100,
+    "EHLT" 12;
+ height: 30px;
+
+}
+}
+
+p {
+outline-color:green;
+padding: 5px;
+}
+
+p.dashed {
+outline-style: dashed;
+ }
+
+.boxi {
+     grid-column: col-start 3 / span 8;
+    grid-row: 2 / 4;
+  display: grid;
+  grid-template-columns: repeat(1, [col-start] 1fr)
+  gap: 20px;
+  border: 1px solid green;
+ border-width: 1px;
+  background-color: lightorange;
+  padding: 10px;
+  grid-column: col-start / span 12;
+}
+
+    .text-entry-box {
+        width: 100%;
+        min-height: 200px;
+        border: 2px solid #ccc;
+        padding: 10px;
+        font-size: 16px;
+        line-height: 1.5;
+        margin-bottom: 1rem;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        position: relative;
+    }
+
+    .motive {
+        text-align: center;
+        margin-bottom: 2rem;
+         font-size: 14px;
+        font-style: italic;
+ font-family: "Lucida Console", "Courier New", monospace;
+
+    }
+
+    .tooltip {
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .tooltip .tooltiptext {
+        visibility: hidden;
+        width: 120px;
+        background-color: black;
+        color: #fff;
+        text-align: center;
+        border-radius: 6px;
+        padding: 5px 0;
+        position: absolute;
+        z-index: 1;
+        bottom: 125%;
+        left: 50%;
+        margin-left: -60px;
+        opacity: 0;
+        transition: opacity 0.3s;
+    }
+
+    .tooltip:hover .tooltiptext {
+        visibility: visible;
+        opacity: 1;
+    }
+
+    .controls {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+            font-size: 20px;
+        margin-bottom: 1rem;
+        align-items: center;
+    }
+
+    .control-group {
+        display: flex;
+        flex-direction: column;
+            padding: 10px 5px;
+font-family: "Times New Roman", Times, serif;
+          background-color: seashell;
+            margin-bottom: 10px;
+            border-radius: 10px;
+    }
+
+    input[type="number"] {
+        width: 80px;
+        padding: 5px;
+    }
+
+    .buttons {
+        margin-top: 5px;
+        display: flex;
+     font-size: 20px;
+        gap: 1rem;
+      padding: 5px 10px
+    }
+        .footer {
+            background-color: pink;
+            padding: 10px;
+font-family: "Times New Roman", Times, serif;
+
+            border-radius: 10px;
+            text-align: center;
+            margin-top: 20px;
+     border: 2px solid salmon;
+            color: #000000; /* New Footer Text Color */
+        }
+        .footer a { color: #0000EE; font-weight: bold;
+
+    #page-count {
+        font-size: 2rem;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 2rem;
+    }
+</style>
 </head>
 <body>
 
-    <!-- Main view with the title and action buttons -->
-    <div id="main-view">
-        <h1>PDF viewer Adv.</h1>
-        <div id="last-opened-container">
-            <h3>Recent Files</h3>
-            <div id="last-opened-list">
-                <!-- Links to last 3 opened PDFs will be dynamically inserted here -->
-            </div>
+    <div class="page-border">
+    <div class="heading">
+        
+<h1 class="font-effect-emboss">Pages required?</h1>
+         </div>  
+<div class="comment">*
+            <span class="tooltiptext">For more realistic, </span>
+</div>
+
+
+
+<div class="container">
+<p class="motive">⚡Paste here 👇🏼</p>
+        
+    <div id="text-boxes-container">
+        <div class="text-entry-box" contenteditable="true" placeholder="Word to replace everywhere">
+
         </div>
-        
-        <!-- This button will trigger the hidden file input -->
-        <button id="open-btn" class="action-button">Open PDF</button>
-        <input type="file" id="file-input" accept=".pdf" />
     </div>
-
-    <!-- The full-screen container for displaying the PDF -->
-    <div id="pdf-viewer">
-        <!-- The canvas where the PDF page will be rendered -->
-        <canvas id="pdf-canvas"></canvas>
+<p class="motive">⚡Change these values for 'accurate pages'👇🏼</p>
+    <div class="controls">
+        <div class="control-group">
+            <label for="words-per-line">How many words per line?</label>
+            <input type="number" id="words-per-line" value="10" oninput="applyWordWrap()">
+        </div>
+        <div class="control-group">
+            <label for="lines-per-page">How many lines in a page?</label>
+            <input type="number" id="lines-per-page" value="25" oninput="calculatePages()">
         
-        <!-- The close button visible in full-screen mode -->
-        <div id="close-btn" title="Close Viewer">❌</div>
-        
-        <!-- Page number indicator (e.g., "2 / 15") -->
-        <div id="page-num-indicator"></div>
-    </div>
+        <div>
+            <input type="checkbox" id="remove-spacing" onchange="toggleLineSpacing()">
+            <label for="remove-spacing">Don't allow spacing</label>
+        </div>
+ </div>
     
-    <!-- The persistent tooltip at the bottom -->
-    <div class="tooltip">made by DecodingM</div>
+<div class="boxi">
+    <div class="buttons">
+        <button onclick="addBox()">+ Add Box</button>
+        <button onclick="copyAll()">Copy All</button>
+        <button onclick="clearAll()">Clear All</button>
+    </div>
+ </div>
+ 
+    <div id="page-count">
+<p class="dashed">Number of pages required will appear here.</p>
+        </div>
+    <div style="text-align: right; margin-top: 2rem;">
+    </div>
+</div>
+</div>
+<p class="motive">The motive of the website is to help you with the number of pages required to complete these writing portions.</p>
+</div>
+        <div class="footer">
+            Made by <a href="link_here" target="_blank"> [•́ ⁠ ⁠‿⁠ ⁠,•]</a>
+            <span class="font-effect-neon">DecodingM</span>
+        </div>
 
-    <!-- Link to the external JavaScript file, deferred to load after the HTML -->
-    <script defer src="script.js"></script>
+<script>
+
+
+    function applyWordWrap() {
+        const wordsPerLine = parseInt(document.getElementById('words-per-line').value);
+        if (isNaN(wordsPerLine) || wordsPerLine <= 0) return;
+
+        const textBoxes = document.querySelectorAll('.text-entry-box');
+        textBoxes.forEach(box => {
+            const originalText = box.innerText;
+            const words = originalText.split(/\s+/);
+            let newText = '';
+            let lineWordCount = 0;
+            words.forEach(word => {
+                if (lineWordCount + 1 > wordsPerLine) {
+                    newText += '\n' + word + ' ';
+                    lineWordCount = 1;
+                } else {
+                    newText += word + ' ';
+                    lineWordCount++;
+                }
+            });
+            box.innerText = newText.trim();
+        });
+        calculatePages();
+    }
+
+
+    function calculatePages() {
+        const linesPerPage = parseInt(document.getElementById('lines-per-page').value);
+        if (isNaN(linesPerPage) || linesPerPage <= 0) {
+            document.getElementById('page-count').innerText = 'Please enter a valid number for lines per page.';
+            return;
+        }
+
+        const removeSpacing = document.getElementById('remove-spacing').checked;
+        let totalLines = 0;
+
+        const textBoxes = document.querySelectorAll('.text-entry-box');
+        textBoxes.forEach(box => {
+            const text = box.innerText;
+            const lines = text.split('\n');
+            if (removeSpacing) {
+                totalLines += lines.length;
+            } else {
+                totalLines += lines.length + (lines.length > 0 ? lines.length - 1 : 0);
+            }
+        });
+
+        if (totalLines === 0) {
+            document.getElementById('page-count').innerText = 'Number of pages required will appear here.';
+            return;
+        }
+
+        const pages = Math.ceil(totalLines / linesPerPage);
+        const remainingLines = totalLines % linesPerPage;
+
+        if (pages === 1 && remainingLines > 0) {
+             document.getElementById('page-count').innerText = `${pages} page & ${remainingLines} line${remainingLines > 1 ? 's' : ''}.`;
+        } else if (pages > 0 && remainingLines === 0) {
+            document.getElementById('page-count').innerText = `${pages} page${pages > 1 ? 's' : ''}.`;
+        } else if (pages > 0) {
+            document.getElementById('page-count').innerText = `${pages} page${pages > 1 ? 's' : ''} & ${remainingLines} line${remainingLines > 1 ? 's' : ''}.`;
+        } else {
+             document.getElementById('page-count').innerText = 'Less than a page.';
+        }
+    }
+
+    function toggleLineSpacing() {
+        const removeSpacing = document.getElementById('remove-spacing').checked;
+        const textBoxes = document.querySelectorAll('.text-entry-box');
+        textBoxes.forEach(box => {
+            if (removeSpacing) {
+                box.style.lineHeight = '1';
+            } else {
+                box.style.lineHeight = '1.5';
+            }
+        });
+        calculatePages();
+    }
+
+    function addBox() {
+        const container = document.getElementById('text-boxes-container');
+        const newBox = document.createElement('div');
+        newBox.className = 'text-entry-box';
+        newBox.setAttribute('contenteditable', 'true');
+        newBox.innerHTML = `
+            <div class="slider-container">
+                <input type="range" min="12" max="32" value="16" class="slider" oninput="changeFontSize(this)">
+            </div>
+        `;
+        container.appendChild(newBox);
+    }
+
+    function copyAll() {
+        let allText = '';
+        const textBoxes = document.querySelectorAll('.text-entry-box');
+        textBoxes.forEach(box => {
+            allText += box.innerText + '\n\n';
+        });
+
+        navigator.clipboard.writeText(allText.trim()).then(() => {
+            alert('All text copied to clipboard!');
+        }).catch(err => {
+            console.error('Failed to copy: ', err);
+        });
+    }
+
+    function clearAll() {
+        const textBoxes = document.querySelectorAll('.text-entry-box');
+        textBoxes.forEach(box => {
+            box.innerHTML = `
+                <div class="slider-container">
+                    <input type="range" min="12" max="32" value="16" class="slider" oninput="changeFontSize(this)">
+                </div>
+            `;
+        });
+        document.getElementById('page-count').innerText = 'Number of pages required will appear here.';
+    }
+</script>
 </body>
 </html>
