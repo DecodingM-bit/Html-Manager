@@ -1,434 +1,518 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Pages required?</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia&effect=neon|outline|emboss|shadow-multiple">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline App</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nabla&display=swap" rel="stylesheet">
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
 
-<style>
-body {
-background-color: lightyellow;
-font-family: sans-serif;
-}
-    .container {
-        max-width: 800px;
-        margin: 2rem auto;
-        padding: 2rem;
-        background-color: white;
-        border-radius: 8px;
-               margin-top: 40px;
-        padding: 8px 40px;
-    }
-
-        .page-border {
-            background-color: #BFECFF; /* New Page Container Color */
-            padding: 10px 15px;
-            border-radius: 15px;
-border: 4px solid skyBlue;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
-            width: 90%;
+        .container {
             max-width: 900px;
-         
+            margin: 0 auto;
         }
 
- .comment {
-   font-size: 10px;
-padding: 1px;
-height: 5px;
-}
-  
-.heading {
-  font-family: "Nabla", system-ui;
-  font-optical-sizing: auto;
-  font-weight: 400;
-  font-style: normal;
-font-size: 23px;
-  font-variation-settings:
-    "EDPT" 100,
-    "EHLT" 12;
- height: 30px;
-
-}
-}
-
-p {
-outline-color:green;
-padding: 5px;
-}
-
-p.dashed {
-outline-style: dashed;
- }
-
-.boxi {
-     grid-column: col-start 3 / span 8;
-    grid-row: 2 / 4;
-  display: grid;
-  grid-template-columns: repeat(1, [col-start] 1fr)
-  gap: 20px;
-  border: 1px solid green;
- border-width: 1px;
-  background-color: lightorange;
-  padding: 10px;
-  grid-column: col-start / span 12;
-}
-
-    .text-entry-box {
-        width: 100%;
-        min-height: 200px;
-        border: 2px solid #ccc;
-        padding: 10px;
-        font-size: 16px;
-        line-height: 1.5;
-        margin-bottom: 1rem;
-        white-space: pre-wrap;
-        word-wrap: break-word;
-        position: relative;
-    }
-
-    .motive {
-        text-align: center;
-        margin-bottom: 2rem;
-         font-size: 14px;
-        font-style: italic;
- font-family: "Lucida Console", "Courier New", monospace;
-
-    }
-
-    .tooltip {
-        position: relative;
-        display: inline-block;
-        cursor: pointer;
-    }
-
-    .tooltip .tooltiptext {
-        visibility: hidden;
-        width: 120px;
-        background-color: black;
-        color: #fff;
-        text-align: center;
-        border-radius: 6px;
-        padding: 5px 0;
-        position: absolute;
-        z-index: 1;
-        bottom: 125%;
-        left: 50%;
-        margin-left: -60px;
-        opacity: 0;
-        transition: opacity 0.3s;
-    }
-
-    .tooltip:hover .tooltiptext {
-        visibility: visible;
-        opacity: 1;
-    }
-
-    .controls {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 1rem;
-            font-size: 20px;
-        margin-bottom: 1rem;
-        align-items: center;
-    }
-
-    .control-group {
-        display: flex;
-        flex-direction: column;
-            padding: 10px 5px;
-font-family: "Times New Roman", Times, serif;
-          background-color: seashell;
-            margin-bottom: 10px;
-            border-radius: 10px;
-    }
-
-    input[type="number"] {
-        width: 80px;
-        padding: 5px;
-    }
-
-    .buttons {
-        margin-top: 5px;
-        display: flex;
-     font-size: 20px;
-        gap: 1rem;
-      padding: 5px 10px
-    }
-        .footer {
-            background-color: pink;
-            padding: 10px;
-font-family: "Times New Roman", Times, serif;
-
-            border-radius: 10px;
+        header {
             text-align: center;
-            margin-top: 20px;
-     border: 2px solid salmon;
-            color: #000000; /* New Footer Text Color */
+            color: white;
+            margin-bottom: 30px;
         }
-        .footer a { color: #0000EE; font-weight: bold;
 
-    #page-count {
-        font-size: 2rem;
-        font-weight: bold;
-        text-align: center;
-        margin-top: 2rem;
-    }
-</style>
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 8px 15px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+
+        .status.online::before {
+            content: "● ";
+            color: #4ade80;
+        }
+
+        .status.offline::before {
+            content: "● ";
+            color: #ef4444;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .card h2 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        input, textarea {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1em;
+        }
+
+        input:focus, textarea:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background: #764ba2;
+        }
+
+        .button-small {
+            padding: 5px 10px;
+            font-size: 0.9em;
+        }
+
+        ul {
+            list-style: none;
+            margin-top: 15px;
+        }
+
+        li {
+            background: #f3f4f6;
+            padding: 12px;
+            margin: 8px 0;
+            border-radius: 5px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .delete-btn {
+            background: #ef4444;
+            padding: 5px 10px;
+            font-size: 0.8em;
+        }
+
+        .delete-btn:hover {
+            background: #dc2626;
+        }
+
+        .calculator-display {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 5px;
+            text-align: right;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            min-height: 50px;
+            word-wrap: break-word;
+            word-break: break-all;
+        }
+
+        .calculator-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 5px;
+        }
+
+        .calc-btn {
+            padding: 20px;
+            font-size: 1.2em;
+            background: #e5e7eb;
+            color: #1f2937;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .calc-btn:hover {
+            background: #d1d5db;
+        }
+
+        .calc-btn.operator {
+            background: #667eea;
+            color: white;
+        }
+
+        .calc-btn.operator:hover {
+            background: #764ba2;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .note-display {
+            background: #f9fafb;
+            padding: 15px;
+            border-radius: 5px;
+            min-height: 100px;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+        }
+
+        .color-picker-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .color-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 3px solid transparent;
+            transition: all 0.3s;
+        }
+
+        .color-box:hover {
+            transform: scale(1.1);
+        }
+
+        .color-box.selected {
+            border-color: #333;
+        }
+
+        @media (max-width: 600px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+
+            header h1 {
+                font-size: 1.8em;
+            }
+
+            .calculator-buttons {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <header>
+            <h1>📱 Offline App</h1>
+            <div class="status" id="status">Online</div>
+        </header>
 
-    <div class="page-border">
-    <div class="heading">
-        
-<h1 class="font-effect-emboss">Pages required?</h1>
-         </div>  
-<div class="comment">*
-            <span class="tooltiptext">For more realistic, </span>
-</div>
-
-
-
-<div class="container">
-<p class="motive">⚡Paste here 👇🏼</p>
-        
-    <div id="text-boxes-container">
-        <div class="text-entry-box" contenteditable="true" placeholder="Word to replace everywhere">
-
-        </div>
-    </div>
-<p class="motive">⚡Change these values for 'accurate pages'👇🏼</p>
-    <div class="controls">
-        <div class="control-group">
-            <label for="words-per-line">How many words per line?</label>
-            <input type="number" id="words-per-line" value="10" oninput="applyWordWrap()">
-        </div>
-        <div class="control-group">
-            <label for="lines-per-page">How many lines in a page?</label>
-            <input type="number" id="lines-per-page" value="25" oninput="calculatePages()">
-        
-        <div>
-            <input type="checkbox" id="remove-spacing" onchange="toggleLineSpacing()">
-            <label for="remove-spacing">Don't allow spacing</label>
-        </div>
- </div>
-    
-<div class="boxi">
-    <div class="buttons">
-        <button onclick="addBox()">+ Add Box</button>
-        <button onclick="copyAll()">Copy All</button>
-        <button onclick="clearAll()">Clear All</button>
-    </div>
- </div>
- 
-    <div id="page-count">
-<p class="dashed">Number of pages required will appear here.</p>
-        </div>
-    <div style="text-align: right; margin-top: 2rem;">
-    </div>
-</div>
-</div>
-<p class="motive">The motive of the website is to help you with the number of pages required to complete these writing portions.</p>
-</div>
-        <div class="footer">
-            Made by <a href="link_here" target="_blank"> [•́ ⁠ ⁠‿⁠ ⁠,•]</a>
-            <span class="font-effect-neon">DecodingM</span>
-        </div>
-
-<script>
-        if ('serviceWorker' in navigator) {
-            navigator.serviceWorker.register('/sw.js')
-            .then(function(registration) {
-                console.log('Service Worker registered with scope:', registration.scope);
-            }).catch(function(error) {
-                console.log('Service Worker registration failed:', error);
-            });
-        }
-    
-// sw.js
-
-const cacheName = 'v1';
-const cachedFiles = [
-  '/',
-  '/index.html',
-  '/style.css',
-  '/script.js',
-  '/images/logo.png'
-];
-
-// Install event - Cache files
-self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(cacheName).then(cache => {
-      console.log('Opened cache');
-      return cache.addAll(cachedFiles);
-    })
-  );
-});
-
-// Activate event - Clean old caches
-self.addEventListener('activate', event => {
-  const cacheWhitelist = [cacheName];
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cache => {
-          if (!cacheWhitelist.includes(cache)) {
-            return caches.delete(cache);
-          }
-        })
-      );
-    })
-  );
-});
-
-// Fetch event - Serve cached content when offline
-self.addEventListener('fetch', event => {
-  event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
-  );
-});
-// meow
-    const cacheName = 'v2';
-    
-    // Activate event - Clean old caches
-self.addEventListener('activate', event => {
-  const cacheWhitelist = [cacheName];  // Ensure the new cache version is kept
-  event.waitUntil(
-    caches.keys().then(cacheNames => {
-      return Promise.all(
-        cacheNames.map(cache => {
-          if (!cacheWhitelist.includes(cache)) {
-            return caches.delete(cache);  // Delete old caches
-          }
-        })
-      );
-    })
-  );
-});
-    
-    function applyWordWrap() {
-        const wordsPerLine = parseInt(document.getElementById('words-per-line').value);
-        if (isNaN(wordsPerLine) || wordsPerLine <= 0) return;
-
-        const textBoxes = document.querySelectorAll('.text-entry-box');
-        textBoxes.forEach(box => {
-            const originalText = box.innerText;
-            const words = originalText.split(/\s+/);
-            let newText = '';
-            let lineWordCount = 0;
-            words.forEach(word => {
-                if (lineWordCount + 1 > wordsPerLine) {
-                    newText += '\n' + word + ' ';
-                    lineWordCount = 1;
-                } else {
-                    newText += word + ' ';
-                    lineWordCount++;
-                }
-            });
-            box.innerText = newText.trim();
-        });
-        calculatePages();
-    }
-
-
-    function calculatePages() {
-        const linesPerPage = parseInt(document.getElementById('lines-per-page').value);
-        if (isNaN(linesPerPage) || linesPerPage <= 0) {
-            document.getElementById('page-count').innerText = 'Please enter a valid number for lines per page.';
-            return;
-        }
-
-        const removeSpacing = document.getElementById('remove-spacing').checked;
-        let totalLines = 0;
-
-        const textBoxes = document.querySelectorAll('.text-entry-box');
-        textBoxes.forEach(box => {
-            const text = box.innerText;
-            const lines = text.split('\n');
-            if (removeSpacing) {
-                totalLines += lines.length;
-            } else {
-                totalLines += lines.length + (lines.length > 0 ? lines.length - 1 : 0);
-            }
-        });
-
-        if (totalLines === 0) {
-            document.getElementById('page-count').innerText = 'Number of pages required will appear here.';
-            return;
-        }
-
-        const pages = Math.ceil(totalLines / linesPerPage);
-        const remainingLines = totalLines % linesPerPage;
-
-        if (pages === 1 && remainingLines > 0) {
-             document.getElementById('page-count').innerText = `${pages} page & ${remainingLines} line${remainingLines > 1 ? 's' : ''}.`;
-        } else if (pages > 0 && remainingLines === 0) {
-            document.getElementById('page-count').innerText = `${pages} page${pages > 1 ? 's' : ''}.`;
-        } else if (pages > 0) {
-            document.getElementById('page-count').innerText = `${pages} page${pages > 1 ? 's' : ''} & ${remainingLines} line${remainingLines > 1 ? 's' : ''}.`;
-        } else {
-             document.getElementById('page-count').innerText = 'Less than a page.';
-        }
-    }
-
-    function toggleLineSpacing() {
-        const removeSpacing = document.getElementById('remove-spacing').checked;
-        const textBoxes = document.querySelectorAll('.text-entry-box');
-        textBoxes.forEach(box => {
-            if (removeSpacing) {
-                box.style.lineHeight = '1';
-            } else {
-                box.style.lineHeight = '1.5';
-            }
-        });
-        calculatePages();
-    }
-
-    function addBox() {
-        const container = document.getElementById('text-boxes-container');
-        const newBox = document.createElement('div');
-        newBox.className = 'text-entry-box';
-        newBox.setAttribute('contenteditable', 'true');
-        newBox.innerHTML = `
-            <div class="slider-container">
-                <input type="range" min="12" max="32" value="16" class="slider" oninput="changeFontSize(this)">
-            </div>
-        `;
-        container.appendChild(newBox);
-    }
-
-    function copyAll() {
-        let allText = '';
-        const textBoxes = document.querySelectorAll('.text-entry-box');
-        textBoxes.forEach(box => {
-            allText += box.innerText + '\n\n';
-        });
-
-        navigator.clipboard.writeText(allText.trim()).then(() => {
-            alert('All text copied to clipboard!');
-        }).catch(err => {
-            console.error('Failed to copy: ', err);
-        });
-    }
-
-    function clearAll() {
-        const textBoxes = document.querySelectorAll('.text-entry-box');
-        textBoxes.forEach(box => {
-            box.innerHTML = `
-                <div class="slider-container">
-                    <input type="range" min="12" max="32" value="16" class="slider" oninput="changeFontSize(this)">
+        <div class="grid">
+            <!-- Todo List -->
+            <div class="card">
+                <h2>✓ Todo List</h2>
+                <div class="input-group">
+                    <input type="text" id="todoInput" placeholder="Add a new task...">
+                    <button onclick="addTodo()">Add</button>
                 </div>
-            `;
-        });
-        document.getElementById('page-count').innerText = 'Number of pages required will appear here.';
-    }
-</script>
+                <ul id="todoList"></ul>
+            </div>
+
+            <!-- Notes -->
+            <div class="card">
+                <h2>📝 Notes</h2>
+                <textarea id="noteInput" placeholder="Write your notes here..."></textarea>
+                <button onclick="saveNote()" style="width: 100%; margin-top: 10px;">Save</button>
+                <div class="note-display" id="noteDisplay"></div>
+            </div>
+
+            <!-- Calculator -->
+            <div class="card">
+                <h2>🔢 Calculator</h2>
+                <div class="calculator-display" id="calcDisplay">0</div>
+                <div class="calculator-buttons">
+                    <button class="calc-btn" onclick="clearCalc()">C</button>
+                    <button class="calc-btn operator" onclick="appendCalc('/')">/</button>
+                    <button class="calc-btn operator" onclick="appendCalc('*')">×</button>
+                    <button class="calc-btn operator" onclick="deleteCalc()">⌫</button>
+                    
+                    <button class="calc-btn" onclick="appendCalc('7')">7</button>
+                    <button class="calc-btn" onclick="appendCalc('8')">8</button>
+                    <button class="calc-btn" onclick="appendCalc('9')">9</button>
+                    <button class="calc-btn operator" onclick="appendCalc('-')">−</button>
+                    
+                    <button class="calc-btn" onclick="appendCalc('4')">4</button>
+                    <button class="calc-btn" onclick="appendCalc('5')">5</button>
+                    <button class="calc-btn" onclick="appendCalc('6')">6</button>
+                    <button class="calc-btn operator" onclick="appendCalc('+')">+</button>
+                    
+                    <button class="calc-btn" onclick="appendCalc('1')">1</button>
+                    <button class="calc-btn" onclick="appendCalc('2')">2</button>
+                    <button class="calc-btn" onclick="appendCalc('3')">3</button>
+                    <button class="calc-btn operator" onclick="appendCalc('.')">.</button>
+                    
+                    <button class="calc-btn" onclick="appendCalc('0')" style="grid-column: span 2;">0</button>
+                    <button class="calc-btn operator" onclick="calculateResult()" style="grid-column: span 2;">=</button>
+                </div>
+            </div>
+
+            <!-- Color Picker -->
+            <div class="card">
+                <h2>🎨 Color Mixer</h2>
+                <div class="color-picker-group">
+                    <div class="color-box selected" style="background: #667eea;" onclick="setColor('#667eea')"></div>
+                    <div class="color-box" style="background: #764ba2;" onclick="setColor('#764ba2')"></div>
+                    <div class="color-box" style="background: #4ade80;" onclick="setColor('#4ade80')"></div>
+                    <div class="color-box" style="background: #f59e0b;" onclick="setColor('#f59e0b')"></div>
+                    <div class="color-box" style="background: #ef4444;" onclick="setColor('#ef4444')"></div>
+                </div>
+                <input type="color" id="colorInput" value="#667eea" onchange="setColor(this.value)">
+                <div id="colorPreview" style="margin-top: 10px; padding: 20px; background: #667eea; border-radius: 5px; color: white; text-align: center; font-weight: bold;"></div>
+            </div>
+
+            <!-- Converter -->
+            <div class="card">
+                <h2>🔄 Converter</h2>
+                <input type="number" id="tempInput" placeholder="Enter temperature">
+                <div class="input-group" style="margin-top: 10px;">
+                    <button onclick="convertCelsius()">°C to °F</button>
+                    <button onclick="convertFahrenheit()">°F to °C</button>
+                </div>
+                <div id="convertResult" style="background: #f3f4f6; padding: 10px; border-radius: 5px; margin-top: 10px;"></div>
+            </div>
+
+            <!-- Timer/Stopwatch -->
+            <div class="card">
+                <h2>⏱️ Stopwatch</h2>
+                <div style="font-size: 2em; text-align: center; font-weight: bold; margin: 20px 0; font-family: monospace;" id="timerDisplay">00:00:00</div>
+                <div class="input-group">
+                    <button id="startBtn" onclick="startTimer()">Start</button>
+                    <button onclick="stopTimer()">Stop</button>
+                    <button onclick="resetTimer()">Reset</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // ========== Status Check ==========
+        function updateStatus() {
+            const status = document.getElementById('status');
+            if (navigator.onLine) {
+                status.textContent = 'Online';
+                status.className = 'status online';
+            } else {
+                status.textContent = 'Offline';
+                status.className = 'status offline';
+            }
+        }
+
+        window.addEventListener('online', updateStatus);
+        window.addEventListener('offline', updateStatus);
+        updateStatus();
+
+        // ========== Local Storage ==========
+        function loadData() {
+            const todos = JSON.parse(localStorage.getItem('todos')) || [];
+            const note = localStorage.getItem('note') || '';
+            
+            todos.forEach(todo => addTodoElement(todo));
+            if (note) document.getElementById('noteDisplay').textContent = note;
+        }
+
+        function saveToStorage(key, value) {
+            localStorage.setItem(key, value);
+        }
+
+        // ========== Todo List ==========
+        function addTodo() {
+            const input = document.getElementById('todoInput');
+            if (input.value.trim() === '') return;
+            
+            addTodoElement(input.value);
+            
+            const todos = JSON.parse(localStorage.getItem('todos')) || [];
+            todos.push(input.value);
+            saveToStorage('todos', JSON.stringify(todos));
+            
+            input.value = '';
+        }
+
+        function addTodoElement(text) {
+            const li = document.createElement('li');
+            li.textContent = text;
+            const btn = document.createElement('button');
+            btn.textContent = 'Delete';
+            btn.className = 'delete-btn button-small';
+            btn.onclick = function() {
+                li.remove();
+                updateTodos();
+            };
+            li.appendChild(btn);
+            document.getElementById('todoList').appendChild(li);
+        }
+
+        function updateTodos() {
+            const todos = Array.from(document.querySelectorAll('#todoList li'))
+                .map(li => li.textContent.replace('Delete', '').trim());
+            saveToStorage('todos', JSON.stringify(todos));
+        }
+
+        // ========== Notes ==========
+        function saveNote() {
+            const note = document.getElementById('noteInput').value;
+            document.getElementById('noteDisplay').textContent = note;
+            saveToStorage('note', note);
+            document.getElementById('noteInput').value = '';
+        }
+
+        // ========== Calculator ==========
+        let calcDisplay = '0';
+
+        function appendCalc(value) {
+            if (calcDisplay === '0') calcDisplay = '';
+            calcDisplay += value;
+            updateCalcDisplay();
+        }
+
+        function clearCalc() {
+            calcDisplay = '0';
+            updateCalcDisplay();
+        }
+
+        function deleteCalc() {
+            calcDisplay = calcDisplay.slice(0, -1) || '0';
+            updateCalcDisplay();
+        }
+
+        function calculateResult() {
+            try {
+                calcDisplay = eval(calcDisplay).toString();
+                updateCalcDisplay();
+            } catch {
+                calcDisplay = 'Error';
+                updateCalcDisplay();
+            }
+        }
+
+        function updateCalcDisplay() {
+            document.getElementById('calcDisplay').textContent = calcDisplay;
+        }
+
+        // ========== Color Picker ==========
+        function setColor(color) {
+            document.body.style.background = `linear-gradient(135deg, ${color} 0%, ${adjustColor(color, -30)} 100%)`;
+            document.getElementById('colorInput').value = color;
+            document.getElementById('colorPreview').style.background = color;
+            document.getElementById('colorPreview').textContent = color;
+            
+            document.querySelectorAll('.color-box').forEach(box => {
+                box.classList.remove('selected');
+            });
+            event.target.classList.add('selected');
+            
+            saveToStorage('selectedColor', color);
+        }
+
+        function adjustColor(color, percent) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) + amt;
+            const G = (num >> 8 & 0x00FF) + amt;
+            const B = (num & 0x0000FF) + amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+
+        // ========== Converter ==========
+        function convertCelsius() {
+            const celsius = parseFloat(document.getElementById('tempInput').value);
+            if (isNaN(celsius)) {
+                document.getElementById('convertResult').textContent = 'Please enter a valid number';
+                return;
+            }
+            const fahrenheit = (celsius * 9/5) + 32;
+            document.getElementById('convertResult').textContent = `${celsius}°C = ${fahrenheit.toFixed(2)}°F`;
+        }
+
+        function convertFahrenheit() {
+            const fahrenheit = parseFloat(document.getElementById('tempInput').value);
+            if (isNaN(fahrenheit)) {
+                document.getElementById('convertResult').textContent = 'Please enter a valid number';
+                return;
+            }
+            const celsius = (fahrenheit - 32) * 5/9;
+            document.getElementById('convertResult').textContent = `${fahrenheit}°F = ${celsius.toFixed(2)}°C`;
+        }
+
+        // ========== Stopwatch ==========
+        let timerInterval = null;
+        let seconds = 0;
+
+        function startTimer() {
+            if (timerInterval) return;
+            timerInterval = setInterval(() => {
+                seconds++;
+                updateTimerDisplay();
+            }, 1000);
+            document.getElementById('startBtn').disabled = true;
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            document.getElementById('startBtn').disabled = false;
+        }
+
+        function resetTimer() {
+            stopTimer();
+            seconds = 0;
+            updateTimerDisplay();
+        }
+
+        function updateTimerDisplay() {
+            const hours = Math.floor(seconds / 3600);
+            const minutes = Math.floor((seconds % 3600) / 60);
+            const secs = seconds % 60;
+            document.getElementById('timerDisplay').textContent =
+                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
+        }
+
+        // ========== Initialize ==========
+        window.addEventListener('DOMContentLoaded', loadData);
+    </script>
 </body>
 </html>
