@@ -12,172 +12,66 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: #1a1a1a;
+            color: #333;
             padding: 20px;
         }
 
         .container {
-            max-width: 900px;
+            max-width: 800px;
             margin: 0 auto;
         }
 
-        header {
+        h1 {
+            color: #fff;
             text-align: center;
-            color: white;
-            margin-bottom: 30px;
-        }
-
-        header h1 {
-            font-size: 2.5em;
             margin-bottom: 10px;
         }
 
         .status {
-            display: inline-block;
-            padding: 8px 15px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 20px;
-            font-size: 0.9em;
+            text-align: center;
+            color: #fff;
+            margin-bottom: 30px;
+            font-size: 14px;
         }
 
-        .status.online::before {
-            content: "● ";
+        .status.online {
             color: #4ade80;
         }
 
-        .status.offline::before {
-            content: "● ";
+        .status.offline {
             color: #ef4444;
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 30px;
-        }
-
         .card {
-            background: white;
-            border-radius: 10px;
+            background: #fff;
+            border-radius: 8px;
             padding: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
 
         .card h2 {
-            color: #667eea;
+            color: #333;
             margin-bottom: 15px;
-            font-size: 1.5em;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            font-size: 1.3em;
         }
 
         input, textarea {
-            flex: 1;
+            width: 100%;
             padding: 10px;
-            border: 2px solid #e5e7eb;
-            border-radius: 5px;
-            font-family: inherit;
-            font-size: 1em;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: Arial, sans-serif;
+            font-size: 14px;
         }
 
         input:focus, textarea:focus {
             outline: none;
-            border-color: #667eea;
-        }
-
-        button {
-            padding: 10px 20px;
-            background: #667eea;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-            transition: background 0.3s;
-        }
-
-        button:hover {
-            background: #764ba2;
-        }
-
-        .button-small {
-            padding: 5px 10px;
-            font-size: 0.9em;
-        }
-
-        ul {
-            list-style: none;
-            margin-top: 15px;
-        }
-
-        li {
-            background: #f3f4f6;
-            padding: 12px;
-            margin: 8px 0;
-            border-radius: 5px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .delete-btn {
-            background: #ef4444;
-            padding: 5px 10px;
-            font-size: 0.8em;
-        }
-
-        .delete-btn:hover {
-            background: #dc2626;
-        }
-
-        .calculator-display {
-            background: #1f2937;
-            color: #10b981;
-            padding: 15px;
-            border-radius: 5px;
-            text-align: right;
-            font-size: 1.5em;
-            margin-bottom: 10px;
-            min-height: 50px;
-            word-wrap: break-word;
-            word-break: break-all;
-        }
-
-        .calculator-buttons {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 5px;
-        }
-
-        .calc-btn {
-            padding: 20px;
-            font-size: 1.2em;
-            background: #e5e7eb;
-            color: #1f2937;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-        .calc-btn:hover {
-            background: #d1d5db;
-        }
-
-        .calc-btn.operator {
-            background: #667eea;
-            color: white;
-        }
-
-        .calc-btn.operator:hover {
-            background: #764ba2;
+            border-color: #4a90e2;
+            box-shadow: 0 0 5px rgba(74, 144, 226, 0.3);
         }
 
         textarea {
@@ -185,156 +79,181 @@
             min-height: 100px;
         }
 
-        .note-display {
-            background: #f9fafb;
+        button {
+            background: #4a90e2;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+
+        button:hover {
+            background: #357abd;
+        }
+
+        button.delete {
+            background: #ef4444;
+            padding: 5px 10px;
+            margin-right: 0;
+            margin-bottom: 0;
+        }
+
+        button.delete:hover {
+            background: #dc2626;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li {
+            background: #f5f5f5;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 4px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        #noteDisplay {
+            background: #f5f5f5;
             padding: 15px;
-            border-radius: 5px;
-            min-height: 100px;
+            border-radius: 4px;
+            margin-top: 10px;
             white-space: pre-wrap;
             word-wrap: break-word;
+            min-height: 80px;
         }
 
-        .color-picker-group {
-            display: flex;
-            gap: 10px;
+        .calc-display {
+            background: #333;
+            color: #4ade80;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: right;
+            font-size: 24px;
             margin-bottom: 15px;
+            font-weight: bold;
+            word-wrap: break-word;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
         }
 
-        .color-box {
-            width: 40px;
-            height: 40px;
-            border-radius: 5px;
+        .calc-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .calc-btn {
+            padding: 15px;
+            font-size: 16px;
+            background: #ddd;
+            color: #333;
+            border: none;
+            border-radius: 4px;
             cursor: pointer;
-            border: 3px solid transparent;
-            transition: all 0.3s;
+            font-weight: bold;
+            margin: 0;
         }
 
-        .color-box:hover {
-            transform: scale(1.1);
+        .calc-btn:hover {
+            background: #ccc;
         }
 
-        .color-box.selected {
-            border-color: #333;
+        .calc-btn.operator {
+            background: #4a90e2;
+            color: white;
         }
 
-        @media (max-width: 600px) {
-            .grid {
-                grid-template-columns: 1fr;
-            }
+        .calc-btn.operator:hover {
+            background: #357abd;
+        }
 
-            header h1 {
-                font-size: 1.8em;
-            }
-
-            .calculator-buttons {
-                grid-template-columns: repeat(3, 1fr);
-            }
+        .date-time {
+            background: #f5f5f5;
+            padding: 15px;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 10px;
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <header>
-            <h1>📱 Offline App</h1>
-            <div class="status" id="status">Online</div>
-        </header>
+        <h1>📱 Offline App</h1>
+        <div class="status" id="status">Online</div>
 
-        <div class="grid">
-            <!-- Todo List -->
-            <div class="card">
-                <h2>✓ Todo List</h2>
-                <div class="input-group">
-                    <input type="text" id="todoInput" placeholder="Add a new task...">
-                    <button onclick="addTodo()">Add</button>
-                </div>
-                <ul id="todoList"></ul>
-            </div>
+        <!-- Todo -->
+        <div class="card">
+            <h2>✓ Todo List</h2>
+            <input type="text" id="todoInput" placeholder="Add a task..." />
+            <button onclick="addTodo()">Add Task</button>
+            <ul id="todoList"></ul>
+        </div>
 
-            <!-- Notes -->
-            <div class="card">
-                <h2>📝 Notes</h2>
-                <textarea id="noteInput" placeholder="Write your notes here..."></textarea>
-                <button onclick="saveNote()" style="width: 100%; margin-top: 10px;">Save</button>
-                <div class="note-display" id="noteDisplay"></div>
-            </div>
+        <!-- Notes -->
+        <div class="card">
+            <h2>📝 Notes</h2>
+            <textarea id="noteInput" placeholder="Write your notes here..."></textarea>
+            <button onclick="saveNote()">Save Note</button>
+            <div id="noteDisplay"></div>
+        </div>
 
-            <!-- Calculator -->
-            <div class="card">
-                <h2>🔢 Calculator</h2>
-                <div class="calculator-display" id="calcDisplay">0</div>
-                <div class="calculator-buttons">
-                    <button class="calc-btn" onclick="clearCalc()">C</button>
-                    <button class="calc-btn operator" onclick="appendCalc('/')">/</button>
-                    <button class="calc-btn operator" onclick="appendCalc('*')">×</button>
-                    <button class="calc-btn operator" onclick="deleteCalc()">⌫</button>
-                    
-                    <button class="calc-btn" onclick="appendCalc('7')">7</button>
-                    <button class="calc-btn" onclick="appendCalc('8')">8</button>
-                    <button class="calc-btn" onclick="appendCalc('9')">9</button>
-                    <button class="calc-btn operator" onclick="appendCalc('-')">−</button>
-                    
-                    <button class="calc-btn" onclick="appendCalc('4')">4</button>
-                    <button class="calc-btn" onclick="appendCalc('5')">5</button>
-                    <button class="calc-btn" onclick="appendCalc('6')">6</button>
-                    <button class="calc-btn operator" onclick="appendCalc('+')">+</button>
-                    
-                    <button class="calc-btn" onclick="appendCalc('1')">1</button>
-                    <button class="calc-btn" onclick="appendCalc('2')">2</button>
-                    <button class="calc-btn" onclick="appendCalc('3')">3</button>
-                    <button class="calc-btn operator" onclick="appendCalc('.')">.</button>
-                    
-                    <button class="calc-btn" onclick="appendCalc('0')" style="grid-column: span 2;">0</button>
-                    <button class="calc-btn operator" onclick="calculateResult()" style="grid-column: span 2;">=</button>
-                </div>
+        <!-- Calculator -->
+        <div class="card">
+            <h2>🔢 Calculator</h2>
+            <div class="calc-display" id="calcDisplay">0</div>
+            <div class="calc-buttons">
+                <button class="calc-btn operator" onclick="clearCalc()">C</button>
+                <button class="calc-btn operator" onclick="deleteCalc()">DEL</button>
+                <button class="calc-btn operator" onclick="appendCalc('/')">/</button>
+                <button class="calc-btn operator" onclick="appendCalc('*')">*</button>
+                
+                <button class="calc-btn" onclick="appendCalc('7')">7</button>
+                <button class="calc-btn" onclick="appendCalc('8')">8</button>
+                <button class="calc-btn" onclick="appendCalc('9')">9</button>
+                <button class="calc-btn operator" onclick="appendCalc('-')">-</button>
+                
+                <button class="calc-btn" onclick="appendCalc('4')">4</button>
+                <button class="calc-btn" onclick="appendCalc('5')">5</button>
+                <button class="calc-btn" onclick="appendCalc('6')">6</button>
+                <button class="calc-btn operator" onclick="appendCalc('+')">+</button>
+                
+                <button class="calc-btn" onclick="appendCalc('1')">1</button>
+                <button class="calc-btn" onclick="appendCalc('2')">2</button>
+                <button class="calc-btn" onclick="appendCalc('3')">3</button>
+                <button class="calc-btn operator" onclick="appendCalc('.')">.​</button>
+                
+                <button class="calc-btn" onclick="appendCalc('0')" style="grid-column: span 2;">0</button>
+                <button class="calc-btn operator" style="grid-column: span 2;" onclick="calculateResult()">=</button>
             </div>
+        </div>
 
-            <!-- Color Picker -->
-            <div class="card">
-                <h2>🎨 Color Mixer</h2>
-                <div class="color-picker-group">
-                    <div class="color-box selected" style="background: #667eea;" onclick="setColor('#667eea')"></div>
-                    <div class="color-box" style="background: #764ba2;" onclick="setColor('#764ba2')"></div>
-                    <div class="color-box" style="background: #4ade80;" onclick="setColor('#4ade80')"></div>
-                    <div class="color-box" style="background: #f59e0b;" onclick="setColor('#f59e0b')"></div>
-                    <div class="color-box" style="background: #ef4444;" onclick="setColor('#ef4444')"></div>
-                </div>
-                <input type="color" id="colorInput" value="#667eea" onchange="setColor(this.value)">
-                <div id="colorPreview" style="margin-top: 10px; padding: 20px; background: #667eea; border-radius: 5px; color: white; text-align: center; font-weight: bold;"></div>
-            </div>
-
-            <!-- Converter -->
-            <div class="card">
-                <h2>🔄 Converter</h2>
-                <input type="number" id="tempInput" placeholder="Enter temperature">
-                <div class="input-group" style="margin-top: 10px;">
-                    <button onclick="convertCelsius()">°C to °F</button>
-                    <button onclick="convertFahrenheit()">°F to °C</button>
-                </div>
-                <div id="convertResult" style="background: #f3f4f6; padding: 10px; border-radius: 5px; margin-top: 10px;"></div>
-            </div>
-
-            <!-- Timer/Stopwatch -->
-            <div class="card">
-                <h2>⏱️ Stopwatch</h2>
-                <div style="font-size: 2em; text-align: center; font-weight: bold; margin: 20px 0; font-family: monospace;" id="timerDisplay">00:00:00</div>
-                <div class="input-group">
-                    <button id="startBtn" onclick="startTimer()">Start</button>
-                    <button onclick="stopTimer()">Stop</button>
-                    <button onclick="resetTimer()">Reset</button>
-                </div>
-            </div>
+        <!-- Date and Time -->
+        <div class="card">
+            <h2>🕐 Date & Time (UTC)</h2>
+            <div class="date-time" id="dateTime"></div>
         </div>
     </div>
 
     <script>
-        // ========== Status Check ==========
+        // Update online/offline status
         function updateStatus() {
             const status = document.getElementById('status');
             if (navigator.onLine) {
-                status.textContent = 'Online';
+                status.textContent = '🟢 Online';
                 status.className = 'status online';
             } else {
-                status.textContent = 'Offline';
+                status.textContent = '🔴 Offline';
                 status.className = 'status offline';
             }
         }
@@ -343,176 +262,124 @@
         window.addEventListener('offline', updateStatus);
         updateStatus();
 
-        // ========== Local Storage ==========
-        function loadData() {
-            const todos = JSON.parse(localStorage.getItem('todos')) || [];
-            const note = localStorage.getItem('note') || '';
-            
-            todos.forEach(todo => addTodoElement(todo));
-            if (note) document.getElementById('noteDisplay').textContent = note;
+        // Update date and time
+        function updateDateTime() {
+            const now = new Date();
+            const utcString = now.toISOString().replace('T', ' ').substring(0, 19);
+            document.getElementById('dateTime').textContent = utcString;
         }
 
-        function saveToStorage(key, value) {
-            localStorage.setItem(key, value);
-        }
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
 
-        // ========== Todo List ==========
+        // TODO LIST
         function addTodo() {
             const input = document.getElementById('todoInput');
-            if (input.value.trim() === '') return;
-            
-            addTodoElement(input.value);
-            
-            const todos = JSON.parse(localStorage.getItem('todos')) || [];
-            todos.push(input.value);
-            saveToStorage('todos', JSON.stringify(todos));
-            
-            input.value = '';
-        }
+            const text = input.value.trim();
+            if (!text) return;
 
-        function addTodoElement(text) {
             const li = document.createElement('li');
             li.textContent = text;
+            
             const btn = document.createElement('button');
             btn.textContent = 'Delete';
-            btn.className = 'delete-btn button-small';
+            btn.className = 'delete';
             btn.onclick = function() {
                 li.remove();
-                updateTodos();
+                saveTodos();
             };
+            
             li.appendChild(btn);
             document.getElementById('todoList').appendChild(li);
+            input.value = '';
+            saveTodos();
         }
 
-        function updateTodos() {
+        function saveTodos() {
             const todos = Array.from(document.querySelectorAll('#todoList li'))
                 .map(li => li.textContent.replace('Delete', '').trim());
-            saveToStorage('todos', JSON.stringify(todos));
+            localStorage.setItem('todos', JSON.stringify(todos));
         }
 
-        // ========== Notes ==========
+        function loadTodos() {
+            const todos = JSON.parse(localStorage.getItem('todos') || '[]');
+            todos.forEach(todo => {
+                const li = document.createElement('li');
+                li.textContent = todo;
+                
+                const btn = document.createElement('button');
+                btn.textContent = 'Delete';
+                btn.className = 'delete';
+                btn.onclick = function() {
+                    li.remove();
+                    saveTodos();
+                };
+                
+                li.appendChild(btn);
+                document.getElementById('todoList').appendChild(li);
+            });
+        }
+
+        // NOTES
         function saveNote() {
-            const note = document.getElementById('noteInput').value;
-            document.getElementById('noteDisplay').textContent = note;
-            saveToStorage('note', note);
+            const text = document.getElementById('noteInput').value;
+            document.getElementById('noteDisplay').textContent = text;
+            localStorage.setItem('note', text);
             document.getElementById('noteInput').value = '';
         }
 
-        // ========== Calculator ==========
-        let calcDisplay = '0';
+        function loadNote() {
+            const note = localStorage.getItem('note') || '';
+            if (note) {
+                document.getElementById('noteDisplay').textContent = note;
+            }
+        }
 
-        function appendCalc(value) {
-            if (calcDisplay === '0') calcDisplay = '';
-            calcDisplay += value;
+        // CALCULATOR
+        let calcValue = '0';
+
+        function appendCalc(val) {
+            if (calcValue === '0') {
+                calcValue = val;
+            } else {
+                calcValue += val;
+            }
             updateCalcDisplay();
         }
 
         function clearCalc() {
-            calcDisplay = '0';
+            calcValue = '0';
             updateCalcDisplay();
         }
 
         function deleteCalc() {
-            calcDisplay = calcDisplay.slice(0, -1) || '0';
+            calcValue = calcValue.slice(0, -1) || '0';
             updateCalcDisplay();
         }
 
         function calculateResult() {
             try {
-                calcDisplay = eval(calcDisplay).toString();
-                updateCalcDisplay();
-            } catch {
-                calcDisplay = 'Error';
-                updateCalcDisplay();
+                calcValue = eval(calcValue).toString();
+            } catch (e) {
+                calcValue = 'Error';
             }
+            updateCalcDisplay();
         }
 
         function updateCalcDisplay() {
-            document.getElementById('calcDisplay').textContent = calcDisplay;
+            document.getElementById('calcDisplay').textContent = calcValue;
         }
 
-        // ========== Color Picker ==========
-        function setColor(color) {
-            document.body.style.background = `linear-gradient(135deg, ${color} 0%, ${adjustColor(color, -30)} 100%)`;
-            document.getElementById('colorInput').value = color;
-            document.getElementById('colorPreview').style.background = color;
-            document.getElementById('colorPreview').textContent = color;
-            
-            document.querySelectorAll('.color-box').forEach(box => {
-                box.classList.remove('selected');
-            });
-            event.target.classList.add('selected');
-            
-            saveToStorage('selectedColor', color);
-        }
-
-        function adjustColor(color, percent) {
-            const num = parseInt(color.replace("#", ""), 16);
-            const amt = Math.round(2.55 * percent);
-            const R = (num >> 16) + amt;
-            const G = (num >> 8 & 0x00FF) + amt;
-            const B = (num & 0x0000FF) + amt;
-            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
-                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
-                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
-        }
-
-        // ========== Converter ==========
-        function convertCelsius() {
-            const celsius = parseFloat(document.getElementById('tempInput').value);
-            if (isNaN(celsius)) {
-                document.getElementById('convertResult').textContent = 'Please enter a valid number';
-                return;
+        // ENTER key support for todo
+        document.getElementById('todoInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                addTodo();
             }
-            const fahrenheit = (celsius * 9/5) + 32;
-            document.getElementById('convertResult').textContent = `${celsius}°C = ${fahrenheit.toFixed(2)}°F`;
-        }
+        });
 
-        function convertFahrenheit() {
-            const fahrenheit = parseFloat(document.getElementById('tempInput').value);
-            if (isNaN(fahrenheit)) {
-                document.getElementById('convertResult').textContent = 'Please enter a valid number';
-                return;
-            }
-            const celsius = (fahrenheit - 32) * 5/9;
-            document.getElementById('convertResult').textContent = `${fahrenheit}°F = ${celsius.toFixed(2)}°C`;
-        }
-
-        // ========== Stopwatch ==========
-        let timerInterval = null;
-        let seconds = 0;
-
-        function startTimer() {
-            if (timerInterval) return;
-            timerInterval = setInterval(() => {
-                seconds++;
-                updateTimerDisplay();
-            }, 1000);
-            document.getElementById('startBtn').disabled = true;
-        }
-
-        function stopTimer() {
-            clearInterval(timerInterval);
-            timerInterval = null;
-            document.getElementById('startBtn').disabled = false;
-        }
-
-        function resetTimer() {
-            stopTimer();
-            seconds = 0;
-            updateTimerDisplay();
-        }
-
-        function updateTimerDisplay() {
-            const hours = Math.floor(seconds / 3600);
-            const minutes = Math.floor((seconds % 3600) / 60);
-            const secs = seconds % 60;
-            document.getElementById('timerDisplay').textContent =
-                `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(secs).padStart(2, '0')}`;
-        }
-
-        // ========== Initialize ==========
-        window.addEventListener('DOMContentLoaded', loadData);
+        // Load data on page load
+        loadTodos();
+        loadNote();
     </script>
 </body>
 </html>
