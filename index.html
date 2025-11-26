@@ -1,177 +1,182 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#26203a" />
-    <link
-      rel="icon"
-      href="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fbcse.png?v=1617477950382"
-    />
-    
-    <title>MCBE Essentials</title>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resource Downloads</title>
+    <!-- Tailwind CSS for Styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap');
+        body { font-family: 'Inter', sans-serif; }
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
 
-    <!-- import the webpage's stylesheet -->
-    <link rel="stylesheet" href="/style.css">
-    <link rel="stylesheet" href="/item/style.css">
-    <link rel="stylesheet" href="style.css">
+    <!-- Header -->
+    <header class="gradient-bg text-white shadow-lg">
+        <div class="container mx-auto px-4 py-8 text-center">
+            <h1 class="text-3xl md:text-4xl font-bold mb-2">Public Resources</h1>
+            <p class="text-blue-100 max-w-2xl mx-auto">
+                Access and download the latest PDFs, documents, and materials directly from this repository.
+            </p>
+        </div>
+    </header>
 
-    <!-- import the webpage's javascript file -->
-    <script src="/apps.js" defer></script>
-    <script src="/item/script.js" defer></script>
-    <script src="/script.js" defer></script>
-    <script src="script.js" defer></script>
-    <script src="/filesaver.js"></script>
-    <script src="/js/datahandler.js" defer></script>
-  </head>
-  <body style="">
-    <!--<div id="menu-button">
-      <div class="menu-button-dot"></div>
-      <div class="menu-button-dot"></div>
-      <div class="menu-button-dot"></div>
-    </div>-->
-    <div id="head" class="header">
-        <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fbcse.png?v=1617477950382" class="imgicon">
-      <span class="imgicontext">MCBE Essentials</span>
-    </div>
-    <div id="body" class="main-content">
-      <div id="left" class="main-left">
-        <br>
-        <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fbcse.png?v=1617477950382" style="image-rendering: pixelated;" class="leftimg">
-        <h2 style="margin-left:15px; margin-right: 15px;" class="lefttitle">Minecraft Bedrock Essentials</h2>
-        <i style="margin-left:15px; margin-right: 15px; display: none;">A collection of tools for Minecraft Bedrock Edition coding!<br></i><br>
-      </div>
-      <div id="right" class="main-right" style="font-family: Minecraftia;text-align:center;">
-        <h1>Trade Table Editor</h1>
-        <table class="app-main">
-          <tbody>
-            <tr class="app-row">
-              <td class="app-node" colspan="2">
-                <div class="app-inner-inner">
-                  <select class="app-input" style="height:25px;font-size:8pt;width:100px;line-height:20px" id="tierslist" oninput="selectTier(this.value)">
-                    <option value="lol">Tier 0</option>
-                    <option value="lol">Tier 1</option>
-                </select> 
-                <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fcolor_plus.png?v=1617471105142" class="minibutton" onclick="addTier()">
-                <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fcopy.png?v=1617471081488" class="minibutton" onclick="addTier(tradetable.tiers[currentTier])">
-                <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Ficon_trash.png?v=1616555108211" class="minibutton" onclick="deleteTier()">
-                <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Farrow_down_small.png?v=1616861430478" onclick="moveTier(-1);" style="-webkit-transform: scaleY(-1); transform: scaleY(-1);" class="minibutton">            
-          <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Farrow_down_small.png?v=1616861430478" onclick="moveTier(1);" class="minibutton">
-                <img src="https://cdn.glitch.me/17ff8eee-9239-4ba0-8a5c-9263261550b5/pencil_edit_icon.png?v=1640287262683" onclick="editTier();" class="minibutton black">
-                </div>
-              </td>
-            </tr>
-            <tr class="app-row">
-              <td class="app-node" rowspan="2">
-                <span>Trades</span>
-                <div class="app-inner" id="tradelist-container">
-                  <div id="grouplist" class="groupview">Loading new...</div>
-                </div>
-              </td>
-              <td class="app-node" style="height:inherit;">
-                <span>Trade Settings</span>
-                <div class="app-inner" style="height: calc(100% - 50px);">
-                  <label>Max Uses: <input type="number" class="app-input" placeholder="-1" id="trade-uses" min="-1" oninput="updateTrade()"></label><br>
-                  <label>Trader XP: <input type="number" class="app-input" placeholder="0" id="trade-trader-xp" oninput="updateTrade()"></label><br>
-                  <label>Rewards XP: <input type="checkbox" id="trade-rewards-xp"></label><br><br>
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fcolor_plus.png?v=1617471105142" class="minibutton" onclick="addTrade()">
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fcopy.png?v=1617471081488" class="minibutton" onclick="if(currentTradeElement) addTrade(currentTrade)">
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Ficon_trash.png?v=1616555108211" class="minibutton" onclick="deleteTrade()">
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Farrow_down_small.png?v=1616861430478" style="-webkit-transform: scaleY(-1); transform: scaleY(-1);" class="minibutton" onclick="moveTrade(-1)">            
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Farrow_down_small.png?v=1616861430478" class="minibutton" onclick="moveTrade(1)">
-                </div>
-              </td>
-            </tr>
-            <tr class="app-row">
-              <td class="app-node" style="height:inherit;">
-                <span>Group Settings</span>
-                <div class="app-inner" style="height: calc(100% - 50px);">
-                  <label>Randomly select<br class="trade-settings-1"> <input type="number" class="app-input" placeholder="all" id="group-select" oninput="updateGroup()"> trades</label><br><br>
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fcolor_plus.png?v=1617471105142" class="minibutton" onclick="addGroup()">
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fcopy.png?v=1617471081488" class="minibutton" onclick="if(currentGroupElement) addGroup(currentGroup)">
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Ficon_trash.png?v=1616555108211" class="minibutton" onclick="deleteGroup()">
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Farrow_down_small.png?v=1616861430478" style="-webkit-transform: scaleY(-1); transform: scaleY(-1);" class="minibutton" onclick="moveGroup(-1)">            
-                  <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Farrow_down_small.png?v=1616861430478" class="minibutton"  onclick="moveGroup(1)">
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td class="app-node" colspan="2">
-                <label class="generate-button import-button" for="dataFileInput">Import</label><div class="generate-button export-button" onclick="exportTable()">Export</div><div class="generate-button gb-blue preview-button" onclick="previewTable();">Preview Trade Table</div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-        <br>Thanks to <a href="https://thedestruc7i0n.ca/">TheDestruc7i0n</a> for the item data!
-      <br><br>
-      </div>
-    </div>
-    <input type="file" style="display:none" id="dataFileInput" readertype="text" accept=".json">
-    <div class="overlay" id="overlay" style="cursor:pointer;display:none;" onclick="closeTierEditor(); closeItemEditor()"></div>
-    <div class="tier-editor" id="tier-editor" style="display:none;user-select:none;height:unset;">
-      <div style="position:relative;height:100%;text-align:left;">
-          <div class="tier-editor-close-button" onclick="closeTierEditor(); closeItemEditor();">x</div>
-          <h2 style="text-align:center;user-select:none;" class="lefttitle">Tier Editor</h2>
-          <u id="tier-view">Tier 0</u><br>
-          Contains <b id="tier-trade-view">0</b> trades and <b id="tier-group-view">0</b> groups in total<br><br>
-          Requires <input class="app-input" type="number" min="-1" id="tier-xp" oninput="updateTier()"> Trader XP to unlock<br>
-      </div>
-    </div>
-    <div class="tier-editor" id="item-editor" style="display:none;user-select:none;">
-      <div style="position:relative;height:100%;">
-        <div class="tier-editor-close-button" onclick="closeItemEditor()">x</div>
-        <h2 style="text-align:center;user-select:none;" class="lefttitle">Item Editor</h2>
-        <table style="overflow:scroll;text-align:center;margin-left:auto;margin-right:auto;">
-          <tbody>
-            <tr>
-              <td style="position:relative;" rowspan="2" id="item-preview">
-                <mcitem identifier="minecraft:chest" count="2" style="width:64px;height:64px;font-size:18pt;" onclick="snackbar('Copied item JSON to clipboard')"></mcitem>
-              </td>
-              <td style="width:25px;"></td>
-              <td>
-                 <input class="app-input" type="text" placeholder="minecraft:identifer" style="width:160px;font-size:10px" list="item_identifiers" id="item-identifier" oninput="updateItem()"><br>
-                  Count: <input type="number" class="app-input" placeholder="64" id="item-count" oninput="updateItem()" min="1"><br>
-                  <span id="item-dmg-data">Damage:</span> <input type="number" class="app-input" placeholder="0" id="item-damage" oninput="updateItem()" min="0"><br>
-                  Price Mult: <input type="number" class="app-input" placeholder="0" id="item-pricemult" oninput="updateItem()" min="0"><br>
-              </td>
-              <td>
-                  <input class="app-input" type="text" placeholder="Custom Name" style="width:160px;font-size: 8pt;" id="item-name" oninput="updateItem()"><br>
-                  <textarea class="app-input" type="text" placeholder="Item Lore" style="width:150px;height:60px;font-size: 8pt;" id="item-lore" oninput="updateItem()"></textarea><br>
-              </td>
-              <td>
-                  <textarea class="app-input" placeholder="Enchantments
-enchant:level" style="width:160px;height:90px;font-size:10px" id="item-enchantments" oninput="updateItem()"></textarea>
-              </td>
-            <td>
-                 <input class="app-input" type="text" placeholder="minecraft:identifer" style="width:160px;font-size:10px" list="item_identifiers" id="item-identifier" oninput="updateItem()"><br>
-                  Count: <input type="number" class="app-input" placeholder="64" id="item-count" oninput="updateItem()" min="1"><br>
-                  <span id="item-dmg-data">Damage:</span> <input type="number" class="app-input" placeholder="0" id="item-damage" oninput="updateItem()" min="0"><br>
-                  Price Mult: <input type="number" class="app-input" placeholder="0" id="item-pricemult" oninput="updateItem()" min="0"><br>
-                  <div style="margin-top: 5px; font-size: 9pt;">
-                    Enchant with Levels:<br>
-                    <input type="number" class="app-input" placeholder="min" id="item-enchant-min" oninput="updateItem()" style="width:40px;">
-                    <input type="number" class="app-input" placeholder="max" id="item-enchant-max" oninput="updateItem()" style="width:40px;"><br>
-                    <label style="font-size: 9pt;">Enchant Book For Trading <input type="checkbox" id="item-enchant-book" oninput="updateItem()"></label>
-                  </div>
-                  </td>
-              </tr><tr>
-              <!--<td style="width:100%;">
-                  <textarea placeholder="Item JSON goes here" style="width:100%;height:70px;resize:none;" id="item-json" onblur="updateItemJSON()"></textarea>
-              </td>-->
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-    
-    <div class="menu-button2"
-         onmouseover="this.children[0].src='https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Felipses.png?v=1617471332712'"
-         onmouseleave="this.children[0].src='https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fpermissions_custom_dots.png?v=1617471900740'"
-         onclick="toggleMenu(this)"
-         >
-      <img src="https://cdn.glitch.com/17ff8eee-9239-4ba0-8a5c-9263261550b5%2Fpermissions_custom_dots.png?v=1617471900740" style="margin: 20px 8px;width:28px;image-rendering:pixelated;">
-    </div>
-  </body>
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-8 max-w-4xl">
+        
+        <!-- Search Bar -->
+        <div class="mb-8 relative">
+            <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <i data-lucide="search" class="h-5 w-5 text-gray-400"></i>
+            </div>
+            <input type="text" id="searchInput" 
+                class="block w-full pl-10 pr-3 py-3 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 sm:text-sm shadow-sm transition duration-150 ease-in-out" 
+                placeholder="Search for files...">
+        </div>
+
+        <!-- File List Container -->
+        <div id="fileList" class="space-y-4">
+            <!-- Files will be injected here by JavaScript -->
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div id="noResults" class="hidden text-center py-12">
+            <i data-lucide="file-question" class="h-12 w-12 text-gray-400 mx-auto mb-3"></i>
+            <p class="text-gray-500 text-lg">No files match your search.</p>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="container mx-auto px-4 py-6 text-center text-gray-500 text-sm">
+            &copy; <span id="year"></span> Resource Portal. Hosted on GitHub.
+        </div>
+    </footer>
+
+    <script>
+        // ==========================================
+        //  USER CONFIGURATION - EDIT THIS LIST
+        // ==========================================
+        const files = [
+            {
+                name: "Project_Proposal_2024.pdf",
+                category: "Document",
+                size: "2.4 MB",
+                date: "Oct 24, 2023",
+                path: "downloads/Project_Proposal_2024.pdf" 
+            },
+            {
+                name: "Research_Data_Set.csv",
+                category: "Data",
+                size: "450 KB",
+                date: "Nov 02, 2023",
+                path: "downloads/Research_Data_Set.csv"
+            },
+            {
+                name: "Lecture_Notes_Chapter_1.pdf",
+                category: "Education",
+                size: "1.2 MB",
+                date: "Nov 10, 2023",
+                path: "downloads/Lecture_Notes_Chapter_1.pdf"
+            },
+            {
+                name: "Installation_Guide.docx",
+                category: "Guide",
+                size: "800 KB",
+                date: "Nov 15, 2023",
+                path: "downloads/Installation_Guide.docx"
+            },
+            {
+                name: "Source_Code_Bundle.zip",
+                category: "Archive",
+                size: "15 MB",
+                date: "Nov 20, 2023",
+                path: "downloads/Source_Code_Bundle.zip"
+            }
+        ];
+
+        // ==========================================
+        //  APP LOGIC (Do not edit below unless comfortable)
+        // ==========================================
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+        lucide.createIcons();
+
+        const fileListContainer = document.getElementById('fileList');
+        const searchInput = document.getElementById('searchInput');
+        const noResults = document.getElementById('noResults');
+
+        function getIconType(filename) {
+            const ext = filename.split('.').pop().toLowerCase();
+            if (['pdf'].includes(ext)) return 'file-text';
+            if (['jpg', 'png', 'jpeg', 'gif', 'svg'].includes(ext)) return 'image';
+            if (['zip', 'rar', '7z'].includes(ext)) return 'folder-archive';
+            if (['csv', 'xls', 'xlsx'].includes(ext)) return 'sheet';
+            return 'file';
+        }
+
+        function renderFiles(filterText = '') {
+            fileListContainer.innerHTML = '';
+            const lowerFilter = filterText.toLowerCase();
+
+            const filteredFiles = files.filter(file => 
+                file.name.toLowerCase().includes(lowerFilter) || 
+                file.category.toLowerCase().includes(lowerFilter)
+            );
+
+            if (filteredFiles.length === 0) {
+                noResults.classList.remove('hidden');
+            } else {
+                noResults.classList.add('hidden');
+                
+                filteredFiles.forEach(file => {
+                    const iconName = getIconType(file.name);
+                    
+                    const card = document.createElement('div');
+                    card.className = "bg-white rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-shadow p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4";
+                    
+                    card.innerHTML = `
+                        <div class="flex items-center gap-4 w-full sm:w-auto overflow-hidden">
+                            <div class="bg-blue-50 p-3 rounded-lg text-blue-600 flex-shrink-0">
+                                <i data-lucide="${iconName}"></i>
+                            </div>
+                            <div class="min-w-0">
+                                <h3 class="font-semibold text-gray-900 truncate" title="${file.name}">${file.name}</h3>
+                                <p class="text-sm text-gray-500 flex items-center gap-2">
+                                    <span class="inline-block px-2 py-0.5 rounded text-xs bg-gray-100 text-gray-600">${file.category}</span>
+                                    <span>&bull;</span>
+                                    <span>${file.size}</span>
+                                    <span class="hidden sm:inline">&bull;</span>
+                                    <span class="hidden sm:inline">${file.date}</span>
+                                </p>
+                            </div>
+                        </div>
+                        <a href="${file.path}" download class="w-full sm:w-auto flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-5 py-2.5 rounded-lg text-sm font-medium transition-colors">
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                            Download
+                        </a>
+                    `;
+                    fileListContainer.appendChild(card);
+                });
+                lucide.createIcons();
+            }
+        }
+
+        // Initial Render
+        renderFiles();
+
+        // Search Listener
+        searchInput.addEventListener('input', (e) => {
+            renderFiles(e.target.value);
+        });
+    </script>
+</body>
 </html>
-<datalist id="item_identifiers"></datalist>
