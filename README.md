@@ -8,4 +8,4 @@ newly made, may not good enough
 
 > [!NOTE]
 > ### __Green__ Colour means the actual numbering written in your pratical copy (notebook)
-<img width="566" height="683" alt="Screenshot_20251127-144350" src="https://github.com/user-attachments/assets/14ed1550-da1c-4053-883e-a4394de9d499" />
+![-IMG-20251202-WA0013](https://github.com/user-attachments/assets/32e7c2f6-81db-44bb-8da7-b6b290894104)
